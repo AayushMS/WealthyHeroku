@@ -36,6 +36,13 @@ class AccountSerializer(serializers.ModelSerializer):
         extra_kwargs = {'user': {'required': False}}
 
 
+class ChartDataSerializer(serializers.Serializer):
+    category_id = serializers.IntegerField()
+    category__category_name = serializers.CharField()
+    total = serializers.IntegerField()
+    tcount = serializers.IntegerField()
+
+
 class TransactionSerializer(serializers.ModelSerializer):
     account1 = AccountSerializer(many=False, read_only=True)
     account2 = AccountSerializer(many=False, read_only=True)
@@ -52,6 +59,12 @@ class CreateTransactionSerializer(serializers.ModelSerializer):
         fields = '__all__'
 
 
+class BalanceChartDataSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Transaction
+        fields = ['paid_datetime', 'amount', 'transaction_type']
+
+
 class CreateAccountSerializer(serializers.ModelSerializer):
     class Meta:
         model = Account
@@ -63,6 +76,7 @@ class GoalSerializer(serializers.ModelSerializer):
     class Meta:
         model = Goal
         fields = '__all__'
+        extra_kwargs = {'user': {'required': False}}
 
 # class CustomLoginSerializer(LoginSerializer):
 #     username = None

@@ -106,14 +106,14 @@ class Transaction(models.Model):
 
     account1 = models.ForeignKey(Account, on_delete=models.CASCADE, related_name="account1")
     account2 = models.ForeignKey(Account, on_delete=models.CASCADE, blank=True, null=True)
-    category = models.ForeignKey(Category, on_delete=models.CASCADE)
+    category = models.ForeignKey(Category, on_delete=models.CASCADE, blank=True, null=True)
     transaction_type = models.CharField(max_length=8, choices=TYPE_CHOICES)
     title = models.CharField(max_length=50)
     amount = models.IntegerField()
     payee = models.CharField(max_length=255, blank=True, null=True)
     created_datetime = models.DateField(auto_now_add=True)
     datetime = models.DateField()
-    paid_datetime = models.DateField()
+    paid_datetime = models.DateField(blank=True, null=True)
     status = models.CharField(max_length=7, choices=STATUS_CHOICES)
     note = models.CharField(max_length=255, blank=True)
     picture = models.ImageField(null=True, blank=True)
@@ -121,12 +121,21 @@ class Transaction(models.Model):
     def __str__(self):
         return str(self.title)
 
+
 class Goal(models.Model):
+    REACHED = "REACHED"
+    PENDING = "PENDING"
+
+    STATUS_CHOICES = [(REACHED, 'Reached'), (PENDING, 'Pending')]
+
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     goal_name = models.CharField(max_length=255)
-    goal_amount = models.IntegerField()
+    target_amount = models.IntegerField()
     current_amount = models.IntegerField()
-    created_datetime = models.DateTimeField(auto_now_add=True)
-    datetime = models.DateTimeField()
-    completion_datetime = models.DateTimeField(blank=True, null=True)
-    label = models.CharField(max_length=20)
+    created_date = models.DateField(auto_now_add=True)
+    completed_date = models.DateField(blank=True, null=True)
+    desired_date = models.DateField()
+    note = models.CharField(max_length=255, blank=True, null=True)
+    priority = models.IntegerField()
+    status = models.CharField(max_length=7, choices=STATUS_CHOICES)
+    account = models.ForeignKey(Account, on_delete=models.CASCADE)
