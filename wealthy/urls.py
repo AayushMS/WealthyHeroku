@@ -21,6 +21,7 @@ from api import urls as api_urls
 
 from django.conf import settings
 from django.conf.urls.static import static
+from dj_rest_auth.registration.views import VerifyEmailView
 
 # imports for jwt
 from rest_framework_simplejwt.views import (
@@ -36,6 +37,7 @@ urlpatterns = [
     path('api/token/', TokenObtainPairView.as_view(), name='token_obtain_pair'),
     path('api/token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
     path('api/token/verify/', TokenVerifyView.as_view(), name='token_verify'),
+    path('dj-rest-auth/account-confirm-email/', VerifyEmailView.as_view(), name='account_email_verification_sent'),
 ]
 
 # for log in

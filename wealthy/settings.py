@@ -25,7 +25,7 @@ SECRET_KEY = '9p7&(he@!oz5j&0sg=^*sbyb+zc!cf)we6wcw3!c!ezm69@m0e'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['0.0.0.0', 'localhost', '192.168.1.103', '127.0.0.1']
+ALLOWED_HOSTS = ['0.0.0.0', 'localhost', '192.168.1.103', '127.0.0.1', '100.64.203.125']
 
 # Application definition
 
@@ -150,7 +150,7 @@ JWT_AUTH_REFRESH_COOKIE = 'my-refresh-token'
 #
 # simple jwt authentication configuration
 SIMPLE_JWT = {
-    'ACCESS_TOKEN_LIFETIME': timedelta(minutes=365),
+    'ACCESS_TOKEN_LIFETIME': timedelta(minutes=100000000),
     'REFRESH_TOKEN_LIFETIME': timedelta(days=1),
     'ROTATE_REFRESH_TOKENS': False,
     'BLACKLIST_AFTER_ROTATION': True,

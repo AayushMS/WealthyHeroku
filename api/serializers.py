@@ -12,7 +12,7 @@ from django.contrib.auth.models import User
 class UserSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
-        fields = ('email', 'password')
+        fields = '__all__'
 
 
 class CategorySerializer(serializers.ModelSerializer):
@@ -72,12 +72,17 @@ class CreateAccountSerializer(serializers.ModelSerializer):
         extra_kwargs = {'user': {'required': False}}
 
 
-class GoalSerializer(serializers.ModelSerializer):
+class CreateGoalSerializer(serializers.ModelSerializer):
     class Meta:
         model = Goal
         fields = '__all__'
         extra_kwargs = {'user': {'required': False}}
 
-# class CustomLoginSerializer(LoginSerializer):
-#     username = None
-#     email = None
+
+class GoalSerializer(serializers.ModelSerializer):
+    account = AccountSerializer(read_only=False)
+
+    class Meta:
+        model = Goal
+        fields = '__all__'
+        extra_kwargs = {'user': {'required': False}}
