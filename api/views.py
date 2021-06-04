@@ -115,8 +115,15 @@ class ReportsViewSet(viewsets.ModelViewSet):
 
             print(latest_plan)
 
+            # try:
+            #     balance = income_dict['total_income'] - expense_dict['total_expense']
+            # except:
+            #     balance = 0
+            print(income_dict['total_income'])
+            print(expense_dict['total_expense'])
+            balance = income_dict['total_income'] - expense_dict['total_expense']
             outlook = {'total_income': income_dict['total_income'], 'total_expense': expense_dict['total_expense'],
-                       'balance': income_dict['total_income'] - expense_dict['total_expense'],
+                       'balance': balance,
                        'total_planned_income': planned_income_dict['total_planned_income'],
                        'total_planned_expense': planned_expense_dict['total_planned_expense'], 'last_date': latest_plan}
 
@@ -291,5 +298,3 @@ class GoalViewSet(viewsets.ModelViewSet):
     # def partial_update(self, request, *args, **kwargs):
     #     if 'paid_date' in request.query_params and 'status' in request.query_params:
     #
-
-
