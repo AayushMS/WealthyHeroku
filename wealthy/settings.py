@@ -82,16 +82,16 @@ WSGI_APPLICATION = 'wealthy.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'wealthy_db',
-        'USER': 'postgres',
-        'PASSWORD': '123',
-        'HOST': 'localhost',
-        'PORT': '5432'
-    }  
-}
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql',
+#         'NAME': 'wealthy_db',
+#         'USER': 'postgres',
+#         'PASSWORD': '123',
+#         'HOST': 'localhost',
+#         'PORT': '5432'
+#     }  
+# }
 
 import dj_database_url
 db_from_env = dj_database_url.config(conn_max_age=600)
