@@ -25,7 +25,7 @@ SECRET_KEY = '9p7&(he@!oz5j&0sg=^*sbyb+zc!cf)we6wcw3!c!ezm69@m0e'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['0.0.0.0', 'localhost', '192.168.1.103', '127.0.0.1', '100.64.203.125']
+ALLOWED_HOSTS = ['0.0.0.0', 'localhost', '192.168.1.103', '127.0.0.1', '100.64.203.125', 'wealthy-heroku.herokuapp.com']
 
 # Application definition
 
@@ -48,6 +48,7 @@ INSTALLED_APPS = [
 SITE_ID = 1
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -179,6 +180,8 @@ SIMPLE_JWT = {
 
 # upload images to
 STATIC_URL = '/static/'
+
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 MEDIA_URL = '/images/'
 
